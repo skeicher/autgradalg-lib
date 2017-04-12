@@ -1,0 +1,82 @@
+LIB "gfanlib.so";
+LIB "../../lib/autgradalg.lib";
+
+printlevel = 2;
+
+// cox ring:
+intmat Q[4][8] = 
+  1,1,0,0,-1,-1,2,-2,
+  0,1,1,-1,-1,0,1,-1,
+  1,1,1,1,1,1,1,1,
+  1,0,1,0,1,0,1,0;
+
+print(Q);
+
+list TOR = 2; 
+
+ring R = 0,T(1..ncols(Q)),dp;
+
+// attach Q to R:
+setBaseMultigrading(Q); 
+
+list origs = autGenWeights(Q, TOR);
+origs;
+
+def RR = autKS(TOR);
+setring RR;
+
+// the resuling basering:
+RR;
+
+// the result:
+list L = autKSexported;
+L;
+
+// the grading of RR
+getVariableWeights ();
+
+quit;
+
+// "*************************";
+// Y(1)*Y(10)*Y(19)*Y(28)*Y(37)*Y(46)*Y(55)*Y(64)*Z-1,
+//   Y(19)*Y(28)-Y(55)*Y(64),// 3*4 = 7*8
+//   -Y(19)*Y(28)+Y(10)*Y(37),// 3*4 = 2*5
+//   -Y(10)*Y(37)+Y(1)*Y(46) // 2*5 = 1*6
+
+
+
+setring R;
+ideal I = T(1)*T(6) + T(2)*T(5) + T(3)*T(4) + T(7)*T(8);
+
+
+intvec w = 1,9,16,0;
+def RR = autXhat(I, w, TOR);
+setring RR;
+
+
+size(RES);
+~;
+RES;
+quit;
+
+
+def RRR = autCox(I, TOR);
+setring RRR;
+//mstd(Iexported)[2];
+dim(std(Jexported));
+"(88888888888888)_";
+stabExported;
+"(99999999999999999)_";
+~;
+stabExported[2];
+~;
+
+
+
+
+
+
+
+
+quit;
+

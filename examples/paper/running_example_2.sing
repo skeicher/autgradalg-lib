@@ -1,0 +1,35 @@
+LIB "gfanlib.so";
+LIB "../../lib/autgradalg.lib";
+
+printlevel = 2;
+
+// cox ring:
+intmat Q[4][8] = 
+  1,1,0,0,-1,-1,2,-2,
+  0,1,1,-1,-1,0,1,-1,
+  1,1,1,1,1,1,1,1,
+  1,0,1,0,1,0,1,0;
+
+print(Q);
+
+list TOR = 2; 
+
+ring R = 0,T(1..ncols(Q)),dp;
+
+// attach Q to R:
+setBaseMultigrading(Q); 
+
+def RR = autKS(TOR);
+setring RR;
+
+// the resuling basering:
+RR;
+
+// the result:
+list L = autKSexported;
+L;
+
+// the grading of RR
+getVariableWeights ();
+
+quit;

@@ -1,0 +1,70 @@
+LIB "gfanlib.so";
+LIB "../../lib/autgradalg.lib";
+
+printlevel = 2;
+
+// cox ring:
+intmat Q[4][8] = 
+  1,1,0,0,-1,-1,2,-2,
+  0,1,1,-1,-1,0,1,-1,
+  1,1,1,1,1,1,1,1,
+  1,0,1,0,1,0,1,0;
+
+print(Q);
+
+list TOR = 2; 
+
+ring R = 0,T(1..ncols(Q)),dp;
+
+// attach Q to R:
+setBaseMultigrading(Q); 
+
+
+// the algebra in question then is R/I
+ideal I = T(1)*T(6) + T(2)*T(5) + T(3)*T(4) + T(7)*T(8);
+
+def RRR = autGradAlg(I, TOR);
+setring RRR;
+
+//// should yield equations of shape
+// Y(1)*Y(10)*Y(19)*Y(28)*Y(37)*Y(46)*Y(55)*Y(64)*Z-1,
+//   Y(19)*Y(28)-Y(55)*Y(64),
+//   -Y(19)*Y(28)+Y(10)*Y(37),
+//   -Y(10)*Y(37)+Y(1)*Y(46) 
+mstd(Iexported)[2];
+
+
+// compute the dimension of the automorphism group:
+"dimension:"
+dim(std(Jexported));
+
+// to get the detailed list:
+stabExported;
+
+quit;
+
+
+
+
+
+intvec w = 1,9,16,0;
+def RR = autXhat(I, w, TOR);
+setring RR;
+
+
+size(RES);
+~;
+RES;
+quit;
+
+
+
+
+
+
+
+
+
+
+quit;
+

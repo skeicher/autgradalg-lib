@@ -1,0 +1,84 @@
+LIB "../lib/new_autmds.lib";
+
+intmat Q[1][5] = 1,3,1,2,2;
+
+ring R = 0,T(1..5),dp;
+
+// attach Q to R:
+setBaseMultigrading(Q); 
+
+ideal I = T(1)*T(2) + T(3)^2*T(4) + T(5)^2;
+
+list TOR;
+def S = autCox(I, TOR);
+setring S;
+
+ideal J = Jexported;
+J;
+
+"__";
+stabExported;
+
+"__shrink";
+def Small = shrink(J);
+setring Small;
+ideal J = Ishrink;
+
+"_____dim, comps";
+dim(std(J));
+
+def U = absPrimdecGTZ(J);
+setring U;  
+absolute_primes; 
+
+quit;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def S = caut(I);
+setring S;
+
+
+ideal I2 = Jexported;
+I2;
+
+list L = Lexported;
+matrix A = L[1];
+string labels = L[2];
+
+// dim(std(I2));
+printAuts(A, labels, 5, I2);
+
+
+// for components:
+// create smaller ring:
+def Small = shrink(I2);
+setring Small;
+ideal I3 = Ishrink;
+I3;
+
+ dim(std(I3));
+
+
+// takes still too long
+def U = absPrimdecGTZ(I3);
+setring U;  absolute_primes; 
+
+

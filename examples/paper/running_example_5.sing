@@ -1,0 +1,40 @@
+LIB "gfanlib.so";
+LIB "../../lib/autgradalg.lib";
+
+printlevel = 2;
+
+// cox ring:
+intmat Q[4][8] = 
+  1,1,0,0,-1,-1,2,-2,
+  0,1,1,-1,-1,0,1,-1,
+  1,1,1,1,1,1,1,1,
+  1,0,1,0,1,0,1,0;
+
+print(Q);
+
+list TOR = 2; 
+
+ring R = 0,T(1..ncols(Q)),dp;
+
+// attach Q to R:
+setBaseMultigrading(Q); 
+
+
+// the algebra in question then is R/I
+ideal I = T(1)*T(6) + T(2)*T(5) + T(3)*T(4) + T(7)*T(8);
+
+// define the Mori Dream Space X = X(R/I, w)
+// by providing I and w:
+intvec w = 1,9,16,0;
+
+// compute generators for the Hopf algebra of aut(X)
+
+/*
+ NOTE: this presumably will be too hard to compute,
+uncomment if you think otherwise:
+*/
+//def RR = autX(I, w, TOR);
+//setring RR;
+
+quit;
+
