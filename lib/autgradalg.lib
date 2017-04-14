@@ -2050,7 +2050,7 @@ EXAMPLE: shows an example."
 	kill M, w, KTw, L, Iw, MON, Bw, LB, IBw, BMON;
       }
 
-      kill k;
+      //kill k;
  
       setring RR;
       ideal JBAnew = JBA + imap(S, EQs);
@@ -2830,7 +2830,6 @@ EXAMPLE: example autXhat; shows an example
     TOR = #[1];
   }
 
-
   def R = basering;
   intmat Q = getVariableWeights();
   intmat Q0 = gradingFreePart(Q, TOR);
@@ -2843,18 +2842,6 @@ EXAMPLE: example autXhat; shows an example
   }
 
   cone c = gitCone(RL, Q0, w0);
-
-  "-----------";
-  print(rays(c));
-  dimension(c);
-  print(w0);
-  "-----------";
-  bigintmat www[1][3] = 0,0,2;
-  cone ccc = gitCone(RL, Q0, www);
-  print(rays(ccc));
-  print(dimension(ccc));
-
-
   def RR = stabilizer(RL, TOR);
   setring RR;
 
@@ -2883,8 +2870,6 @@ example
 {
   echo=2;
   
-  /////////////
-  // example 3.14 from the paper
   intmat Q[3][5] = 
     1,1,1,1,1,
     1,-1,0,0,1,
@@ -2893,7 +2878,6 @@ example
   list TOR = 2;
   ring R = 0,T(1..5),dp;
   
-  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   ideal I = T(1)*T(2) + T(3)^2 + T(4)^2;

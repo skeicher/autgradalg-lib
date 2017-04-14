@@ -2,15 +2,23 @@ LIB "gfanlib.so";
 LIB "../lib/autgradalg.lib";
 
 "..... testing autKS ......";
+"Press RETURN to continue";
+~;
 example autKS;
 
 "..... stabilizer ......";
+"Press RETURN to continue";
+~;
 example stabilizer;
 
 "..... testing autGradAlg ......";
+"Press RETURN to continue";
+~;
 example autGradAlg;
 
 "..... testing autXhat ......";
+"Press RETURN to continue";
+~;
 example autXhat;
 
 quit;
