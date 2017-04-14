@@ -161,7 +161,7 @@ example
   list TOR = 5;
   ring R = 0,T(1..5),dp;
   
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   ideal I = T(1)*T(2) + T(3)*T(4) + T(5)^2;
@@ -181,7 +181,7 @@ example
     -2, 2, -1, 1,
     1, 1, 1, 1;
 
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   ideal I = T(1)*T(2) + T(3)*T(4);
@@ -209,7 +209,7 @@ example
   //int lam = 13;
   ring R = (0,lam),T(1..6),dp;
 
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   ideal I = 
@@ -262,7 +262,7 @@ example
     -2, 2, -1, 1,
     1, 1, 1, 1;
 
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   ideal I = T(1)*T(2) + T(3)*T(4);
@@ -331,7 +331,7 @@ example
     -2, 2, -1, 1,
     1, 1, 1, 1;
 
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   ideal I = T(1)*T(2) + T(3)*T(4);
@@ -493,7 +493,7 @@ example
   list TOR = 5;
   ring R = 0,T(1..5),dp;
   
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   ideal I = T(1)*T(2) + T(3)*T(4) + T(5)^2;
@@ -511,7 +511,7 @@ example
     -2, 2, -1, 1,
     1, 1, 1, 1;
 
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   intvec w = 0,2;
@@ -1374,7 +1374,7 @@ example
     -2, 2, -1, 1,
     1, 1, 1, 1;
 
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   def S = autGradedPolynomialRing();  
@@ -1539,7 +1539,7 @@ example
   list TOR = 5;
   ring R = 0,T(1..5),dp;
   
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   ideal I = T(1)*T(2) + T(3)*T(4) + T(5)^2;
@@ -1557,7 +1557,7 @@ example
     -2, 2, -1, 1,
     1, 1, 1, 1;
 
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   ideal I = T(1)*T(2) + T(3)*T(4);
@@ -1701,7 +1701,7 @@ example
   intmat Q[1][5] = 3,3,2,2,1;
   ring R = 0,T(1..5),dp;
 
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
   
   ideal I = T(1)*T(2) + T(3)^2*T(4) + T(5)^6,
@@ -2089,7 +2089,7 @@ example
   intmat Q[1][5] = 3,3,2,2,1;
   ring R = 0,T(1..5),dp;
 
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
   
   ideal I = T(1)*T(2) + T(3)^2*T(4) + T(5)^6;
@@ -2112,7 +2112,7 @@ example
   list TOR = 2;
   ring R = 0,T(1..5),dp;
   
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   ideal I = T(1)*T(2) + T(3)^2 + T(4)^2;
@@ -2430,7 +2430,7 @@ example
   intmat Q[1][5] = 3,3,2,2,1;
   ring R = 0,T(1..5),dp;
 
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
   
   //ideal I = T(1)*T(2) + T(3)^2*T(4) + T(5)^6;
@@ -2455,7 +2455,7 @@ example
   list TOR = 2;
   ring R = 0,T(1..5),dp;
   
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   //ideal I = T(1)*T(2) + T(3)^2 + T(4)^2;
@@ -2893,7 +2893,7 @@ example
   list TOR = 2;
   ring R = 0,T(1..5),dp;
   
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   ideal I = T(1)*T(2) + T(3)^2 + T(4)^2;
@@ -3116,7 +3116,7 @@ example
 
   ring R = 0,T(1..ncols(Q)),dp;
   
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
   ideal I = 0;
   intvec w0 = 1;
@@ -3141,7 +3141,7 @@ example
   list TOR = 2;
   ring R = 0,T(1..5),dp;
   
-  // attach Q to R:
+  // attach degree matrix Q to R:
   setBaseMultigrading(Q); 
 
   ideal I = T(1)*T(2) + T(3)^2 + T(4)^2;

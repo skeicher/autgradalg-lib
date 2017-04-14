@@ -16,7 +16,7 @@ list TOR = 2;
 
 ring R = 0,T(1..ncols(Q)),dp;
 
-// attach Q to R:
+// attach degree matrix Q to R:
 setBaseMultigrading(Q); 
 
 

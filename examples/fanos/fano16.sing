@@ -1,6 +1,6 @@
-printlevel = 3;
-LIB"gfanlib.so";
-LIB "../lib/new_autmds.lib";
+
+LIB "gfanlib.so";
+LIB "../../lib/autgradalg.lib";
 
 intmat Q[2][5] = 
   1,3,1,1,2,
@@ -11,26 +11,26 @@ list TOR = 2; // means CL(X) = ZZ + ZZ/TOR[1]*ZZ + ...
 
 ring R = 0,T(1..5),dp;
 
-// attach Q to R:
+// attach degree matrix Q to R:
 setBaseMultigrading(Q); 
 
 ideal I = T(1)*T(2) + T(3)^2*T(4)^2 + T(5)^2;
 
-def S = autCox(I, TOR);
+def S = autGradAlg(I, TOR);
 setring S;
 
 ideal J = Jexported;
 J;
 
-"__";
+"__result";
 stabExported;
 
-"__shrink";
+"__remove unneeded variables (for quicker computations)";
 def Small = shrink(J);
 setring Small;
 ideal J = Ishrink;
 
-"_____dim, comps";
+"_____computating dimension and components (WARNING: this may take a lot of time)";
 dim(std(J));
 
 def U = absPrimdecGTZ(J);
@@ -38,31 +38,3 @@ setring U;
 absolute_primes; 
 
 quit;
-
-
-
-
-
-
-
-
-
-
-
-def S = aut(I, TOR);
-setring S;
-list L = RES;
-
-
-S;
-int n = ncols(Q);
-
-printAut(L, n);
-
-// compute dimension and components:
-printAutInfo(L, n, 1); // one by one
-printAutInfo(L, n, 0); // slow
-
-
-
-/////////////////////////

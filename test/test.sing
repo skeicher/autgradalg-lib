@@ -1,0 +1,16 @@
+LIB "gfanlib.so";
+LIB "../lib/autgradalg.lib";
+
+"..... testing autKS ......";
+example autKS;
+
+"..... stabilizer ......";
+example stabilizer;
+
+"..... testing autGradAlg ......";
+example autGradAlg;
+
+"..... testing autXhat ......";
+example autXhat;
+
+quit;

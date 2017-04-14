@@ -1,6 +1,6 @@
-printlevel = 3;
-LIB"gfanlib.so";
-LIB "../lib/new_autmds.lib";
+
+LIB "gfanlib.so";
+LIB "../../lib/autgradalg.lib";
 
 intmat Q[2][5] = 
   1,1,1,1,1,
@@ -10,28 +10,26 @@ list TOR = 5; // means CL(X) = ZZ + ZZ/TOR[1]*ZZ + ...
 
 ring R = 0,T(1..5),dp;
 
-// attach Q to R:
+// attach degree matrix Q to R:
 setBaseMultigrading(Q); 
 
 ideal I = T(1)*T(2) + T(3)*T(4) + T(5)^2;
 
-
-
-def S = autCox(I, TOR);
+def S = autGradAlg(I, TOR);
 setring S;
 
 ideal J = Jexported;
 J;
 
-"__";
+"__result";
 stabExported;
 
-"__shrink";
+"__remove unneeded variables (for quicker computations)";
 def Small = shrink(J);
 setring Small;
 ideal J = Ishrink;
 
-"_____dim, comps";
+"_____computating dimension and components (WARNING: this may take a lot of time)";
 dim(std(J));
 
 
@@ -40,97 +38,3 @@ setring U;
 absolute_primes; 
 
 quit;
-
-
-
-
-
-
-
-
-def S = aut(I, TOR);
-setring S;
-list L = RES;
-
-
-S;
-int n= 5;
-
-printAut(L, 5);
-
-// compute dimension and components:
-printAutInfo(L, n, 1); // one by one
-printAutInfo(L, n, 0); // slow
-
-
-
-/////////////////////////
-
-
-
-
-
-
-string labels = RES[1][4];
-
-
-
-for(int i = 1; i <= size(RES); i++){
-  intmat B = RES[i][1];
-  matrix A = RES[i][2];
-  ideal Rel = RES[i][3];
-
-  printAuts(A, labels, 5, Rel);
-  print(B);
-  kill A;
-  kill Rel;
- }
-
-
-
-ideal J = intersect(RES[1][3], RES[2][3], RES[3][3], RES[4][3]);
-dim(std(J)); // 4
-
-
-// dimension and components can be computed more quickly as follows:
-def Small = shrink(J);
-setring Small;
-ideal I1 = Ishrink;
-
-
-def U = absPrimdecGTZ(I1); // 2 Komp
-setring U;  absolute_primes; 
-
-quit;
-
-// ///////////
-// def S = caut(I);
-// setring S;
-
-
-// ideal I2 = Jexported;
-// I2;
-
-// list L = Lexported;
-// matrix A = L[1];
-// string labels = L[2];
-
-// // dim(std(I2));
-// printAuts(A, labels, 5, I2);
-
-
-// // for components:
-// // create smaller ring:
-// def Small = shrink(I2);
-// setring Small;
-// ideal I3 = Ishrink;
-// I3;
-
-//  dim(std(I3));
-
-
-// // takes still too long
-// def U = absPrimdecGTZ(I3);
-// setring U;  absolute_primes; 
-
-

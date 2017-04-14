@@ -9,9 +9,11 @@
     * [Assumptions](#assumptions)
 * [How to use the library](#Installation-and-usage)
     * [Installation](#installation)
-    * [Usage: Example](#usage:-example)
+    * [Usage: Examples](#usage:-examples)
     * [Documentation](#documentation)
     * [Testing](#testing)
+    * [Logging](#logging)
+
 
 ## Introduction
 
@@ -44,18 +46,23 @@ They include
 * Either
     * download the file `lib/autgradalg.lib` and `cd` to the folder containing it 
     * or clone this repository and `cd` to the `lib` folder.
-* Try out the lib by running the following [example](#usage:-example).
+* Try out the lib: Execute `Singular` and then load the library with the commands
+    ```C++
+    LIB 'gfanlib.so'
+    LIB 'autgradalg.lib'
+    ```
 
-### Usage: Example
+### Usage: Examples
 
-Execute `Singular` and then load the library with the commands
-```C++
-LIB 'gfanlib.so'
-LIB 'autgradalg.lib'
-```
+You can find examples in the folder `examples`.
+To run any file, say `FOO.sing`, `cd` to the corresponding directory, and run `Singular FOO.sing` on the command line.
+* the folder `examples/paper` lists files to recompute the examples used in the [paper](#http://arxiv.org).
+* the folder `examples/fanos` lists the files to verify the results on Fano varieties listed in the Proposition in the [paper](#http://arxiv.org).
 
 
 ### Documentation
+
+The full documentation including an example for each function is available in the folder `doc`.
 
 #### Procedures: Overview
 
@@ -66,8 +73,23 @@ LIB 'autgradalg.lib'
 * `autXhat(I0, w)`: compute the automorphism group of \widehat X as an algebraic subgroup V(I) of some GL(n).
 * `autX(I0, w)`: compute the automorphism group of X=X(R,w) as an algebraic subgroup V(I) of some GL(n).
 
-#### Full Documentation
-
-The full documentation including examples is available in the folder `doc`.
-
 ### Testing
+
+
+To test all of the previously listed procedures, go to the `test` folder, and execute
+```shell
+Singular test.sing
+```
+
+You can test only one of the previously listed procedures, say `foo`, by starting `Singular`, loading the library and then running 
+```C++
+example foo;
+```
+
+### Logging
+
+You can increase the loglevel with
+```C++
+printlevel = 2;
+```
+
