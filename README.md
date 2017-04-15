@@ -10,7 +10,7 @@
 * [How to use the library](#Installation-and-usage)
     * [Installation](#installation)
     * [Usage: Examples](#usage:-examples)
-    * [Documentation](#documentation)
+    * [Procedures](#procedures)
     * [Testing](#testing)
     * [Logging](#logging)
 
@@ -62,9 +62,10 @@ To run any file, say `FOO.sing`, `cd` to the corresponding directory, and run `S
 
 ### Documentation
 
-The full documentation including an example for each function is available in the folder `doc`.
+The following functions are available from our library:
+type `help FUNCTIONNAME;` to see further information.
+Again, more information and examples can be found [here](#http://arxiv.org/abs/).
 
-#### Procedures: Overview
 
 * `autKS()`: compute the automorphism group of the basering (must be a polynomial ring) as an algebraic subgroup `V(I)` of some `GL(n)`.
 * `autGradAlg(I0, TOR)`: compute the automorphism group of the algebra `basering/I0` as an algebraic subgroup `V(I)` of some `GL(n)`.
