@@ -68,7 +68,7 @@ The full documentation including an example for each function is available in th
 
 * `autKS()`: compute the automorphism group of the basering (must be a polynomial ring) as an algebraic subgroup `V(I)` of some `GL(n)`.
 * `autGradAlg(I0, TOR)`: compute the automorphism group of the algebra `basering/I0` as an algebraic subgroup `V(I)` of some `GL(n)`.
-* `autGeneratorWeights(TOR)`: compute the automorphisms of the grading group of the `basering` that fix the generator degrees.
+* `autGenWeights(TOR)`: compute the automorphisms of the grading group of the `basering` that fix the generator degrees.
 * `stabilizer(I0, TOR)`: compute the stabilizer of the given ideal `I0`.
 * `autXhat(I0, w, TOR)`: compute the automorphism group of `\widehat X` as an algebraic subgroup `V(I)` of some `GL(n)`.
 * `autX(I0, w, TOR)`: compute the automorphism group of `X=X(R,w)` as an algebraic subgroup `V(I)` of some `GL(n)`.

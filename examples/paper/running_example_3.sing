@@ -31,7 +31,7 @@ setring RRR;
 //   Y(19)*Y(28)-Y(55)*Y(64),
 //   -Y(19)*Y(28)+Y(10)*Y(37),
 //   -Y(10)*Y(37)+Y(1)*Y(46) 
-mstd(Iexported)[2];
+mstd(Jexported)[2];
 
 
 // compute the dimension of the automorphism group:
