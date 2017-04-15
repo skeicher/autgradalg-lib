@@ -23,8 +23,8 @@ PROCEDURES:
 * autGradAlg(I0, TOR): compute the automorphism group of R as an algebraic subgroup V(I) of some GL(n).
 * autGeneratorWeights(): compute the automorphisms of the grading group that fix the generator degrees.
 * stabilizer(I0, TOR): compute the stabilizer of the given ideal
-* autXhat(I0, w): compute the automorphism group of \widehat X as an algebraic subgroup V(I) of some GL(n).
-* autX(I0, w): compute the automorphism group of X=X(R,w) as an algebraic subgroup V(I) of some GL(n).
+* autXhat(I0, w, TOR): compute the automorphism group of \widehat X as an algebraic subgroup V(I) of some GL(n).
+* autX(I0, w, TOR): compute the automorphism group of X=X(R,w) as an algebraic subgroup V(I) of some GL(n).
 
 NOTE: the following functions were taken from 'quotsingcox.lib' by M.Donten-Bury and S.Keicher: 'hilbBas'.
 
@@ -44,7 +44,7 @@ LIB "normaliz.lib";
 ////////////////////////
 
 proc col(intmat Q, int i)
-"USAGE: col(Q, i): Q is an intmat, i an integer.
+  "USAGE: col(Q, i): Q is an intmat, i an integer.
 PURPOSE: return the i-th column as an intvec.
 RETURN: an intvec.
 EXAMPLE: shows an example."
@@ -65,7 +65,7 @@ example
 ///////////////////////
 
 proc gradedCompIdeal(ideal RL, intvec w, int dd, list #)
-"USAGE: gradedCompIdeal(I, w, dd): I is an ideal, w an intvec, dd an integer (0 or 1). Optional input: a list of integers representing the torsion.
+  "USAGE: gradedCompIdeal(I, w, dd): I is an ideal, w an intvec, dd an integer (0 or 1). Optional input: a list of integers representing the torsion.
 ASSUME: the basering must be graded (see setBaseMultigrading()) and the cone over the degrees of the variables must be pointed; there must not be 0-degrees. The vector w must be an element of the cone over the degrees of the variables.
 PURPOSE: returns a basis for the component I_w of the ideal; if dd = 0, a list of basis vectors is returned, if dd = 1, a list of monomials is returned.
 RETURN: a list L where L[1] is a list of all monomials of degree w and L[2] is list of polynomials.
@@ -74,7 +74,7 @@ EXAMPLE: shows an example."
   list TOR;
   if(size(#) > 0 and typeof(#) == "list" and typeof(#[1]) == "int"){
     TOR = #[1];
-   }
+  }
 
   // columns of Q are the degrees of the variables of the basering
   intmat Q = getVariableWeights();
@@ -343,7 +343,7 @@ example
 ///////////////////////////////////
 
 proc wmonomials(intvec w1, int dd, list #)
-"USAGE: wmonomials(w, dd): w is an intvec and dd either 1 or 0; 1 means that the funtion should compute a list of exponent vectors and 0 means the function should compute a list of monomials. As an optional third argument a list of integers may be provided to indicate that the last rows of the degree matrix are residue classes in ZZ/aZZ. For instance [2,3] means that the second to last row consists of elements in ZZ/2ZZ and the last one of elements in ZZ/3ZZ.
+  "USAGE: wmonomials(w, dd): w is an intvec and dd either 1 or 0; 1 means that the funtion should compute a list of exponent vectors and 0 means the function should compute a list of monomials. As an optional third argument a list of integers may be provided to indicate that the last rows of the degree matrix are residue classes in ZZ/aZZ. For instance [2,3] means that the second to last row consists of elements in ZZ/2ZZ and the last one of elements in ZZ/3ZZ.
 ASSUME: the basering must be graded (see setBAseMultigrading()) and the cone over 
 the degrees of the variables must be pointed; there mustn't be 0-degrees.
 PURPOSE: computes all monomials T^\nu with deg(T^\nu) = w where
@@ -584,7 +584,7 @@ proc vec2monomial(intvec v){
 //////////////////////////
 
 proc moncoef(poly f, poly mon)
-"USAGE: moncoef(f, mon): f is a polynomial, mon a monomial.
+  "USAGE: moncoef(f, mon): f is a polynomial, mon a monomial.
 PURPOSE: returns the (constant) coefficient of mon in f.
 NOTE: the coefficient of T(1)^2 in T(1)^2*T(2) is assumed to be 1 not T(2). See moncoef2 of the latter is wanted.
 RETURN: a ring element.
@@ -832,7 +832,7 @@ proc autGenWeightsFree(list QQ, list Origs, list OrigDim)
 /////////////////////////////////
 
 proc autGenWeights(intmat Q, list #)
-"USAGE: autGenWeights(Q): Q is an intmat (columns must contain a lattice basis). 
+  "USAGE: autGenWeights(Q): Q is an intmat (columns must contain a lattice basis). 
 ASSUME: the cone over Q must be pointed and the columns of Q contain a lattice basis; there must be no 0-columns in Q. We assume that, in the torsion case, the torsion rows of Q are reduced (for example, a row of Q standing for entries in ZZ/5ZZ must not contain elements > 5 or < 0).
 PURPOSE: computes generators for the subgroup aut(Omega_S) of GL(n, \ZZ) that consists of all invertible integer kxk matrices which fix the set Omega_S of degrees of the variables of the basering S. The set of columns of Q equals Omega_S.
 REFERENCE: Remark 3.1.
@@ -1329,59 +1329,6 @@ proc createAutMatrix(list BL)
   return(S);
 }
 
-
-/////////////////////////////////
-
-proc autGradedPolynomialRing(list #)
-"USAGE:  
-ASSUME: 
-PURPOSE: 
-REFERENCE: Algorithm 3.7. 
-RETURN: 
-EXAMPLE:"
-{
-  dbprint(printlevel, "Entering autGradedPolynomialRing.");
-  list TOR;
-
-  if(size(#) > 0 and typeof(#) == "list" and typeof(#[1]) == "int"){
-    TOR = #[1];
-  }
-
-  def R = basering;
-  int n0 = nvars(basering);
-  ideal RL = 0;
-  list BL = allMonomials(RL, TOR);
-
-  // create formal matrix out of this:
-  // phi(R_w) = R_w for all w in Orig and all automorphisms phi.
-  def S = createAutMatrix(BL); // exports 'Aexported'
-  setring S;
-
-  "TODO2"
-  
-
-  return(S);
-}
-example
-{
-  echo = 2;
-
-  // 1st example /////////
-  ring R = 0, T(1..4), dp;
-
-  // Weights of variables
-  intmat Q[2][4] =
-    -2, 2, -1, 1,
-    1, 1, 1, 1;
-
-  // attach degree matrix Q to R:
-  setBaseMultigrading(Q); 
-
-  def S = autGradedPolynomialRing();  
-  setring S;
-  print(Aexported);
-}
-
 ////////////////////////////
 
 // helper
@@ -1449,7 +1396,7 @@ proc Q2Origs(intmat Q){
 //////////////////////////////////////////
 
 proc gradedCompRing(ideal RL, intvec w, list #)
-"USAGE: gradedCompRing(I, w): I is an ideal, w an intvec. Optional 3rd argument: a list of integers representing the torsion part.
+  "USAGE: gradedCompRing(I, w): I is an ideal, w an intvec. Optional 3rd argument: a list of integers representing the torsion part.
 ASSUME: the basering must be graded (see setBAseMultigrading()) and the cone over 
 the degrees of the variables must be pointed; there mustn't be 0-degrees. The vector
 w must be an element of the cone over the degrees of the variables.
@@ -1672,7 +1619,7 @@ proc insertIntvecIfNew(list L0, intvec v){
 // We assume that if I = <f_1,...,f_s> we have
 // OmegaI = {deg(f_1),...,deg(f_s)}
 proc getOmegaI(ideal I, list #){
-    dbprint(printlevel, "Warning: we assume that OmegaI = {deg(f_1),...,deg(f_s)} if the input ideal is generated by f_1,...,f_s. ");
+  dbprint(printlevel, "Warning: we assume that OmegaI = {deg(f_1),...,deg(f_s)} if the input ideal is generated by f_1,...,f_s. ");
   
   list TOR;
   if(size(#) > 0 and typeof(#) == "list" and typeof(#[1]) == "int"){
@@ -1894,12 +1841,12 @@ proc getEqs(matrix MS, list RES){
 //////////////////////////////////////
 
 proc stabilizer(ideal RL, list #)
-"USAGE: stabilizer(RL, A, BB, AMON, n0): RL is an ideal, A a matrix (standing for a subgroup of GL(n)), BB is an intmat (standing for an automorphism of the grading group),  AMON a list of monomials corresponding to the rows/columns of A, n0 an integer such that the first n0 variables of the basering are the T(i), optional: a list of elementary divisors if there is torsion.
+  "USAGE: stabilizer(RL, A, BB, AMON, n0): RL is an ideal, A a matrix (standing for a subgroup of GL(n)), BB is an intmat (standing for an automorphism of the grading group),  AMON a list of monomials corresponding to the rows/columns of A, n0 an integer such that the first n0 variables of the basering are the T(i), optional: a list of elementary divisors if there is torsion.
 ASSUME: the basering must be graded (see setBaseMultigrading()) and the cone over 
 the degrees of the variables must be pointed; there mustn't be 0-degrees. The vector
 w must be an element of the cone over the degrees of the variables. Moreover, B must be such that it permutes the degrees of the variables and the degrees of the generators of RL.
 PURPOSE: returns relations such that A*I = I.
-RETURN: a list L.
+RETURN: a ring. Also exports an ideal Jexported and a list stabExported.
 EXAMPLE: shows an example."
 { 
   def R = basering;
@@ -2071,7 +2018,6 @@ EXAMPLE: shows an example."
     }
   }
 
-
   // return the ring RR, export the ideal J:
   setring RR;
   ideal Jexported = J;
@@ -2172,7 +2118,7 @@ proc reduceIntvec(intvec w0, list TOR){
 /////////////////////////////////
 
 proc moncoef2(poly f, poly mon, int n0)
-"USAGE: moncoef(f, mon): f is a polynomial, mon a monomial, n0 an integer.
+  "USAGE: moncoef(f, mon): f is a polynomial, mon a monomial, n0 an integer.
 PURPOSE: returns the (not necessarily constant) coefficient of mon in f.
 For example the coefficient of T(1)^2 in T(1)^2*T(2) will be T(2). 
 The integer n0 means that the variables var(n0+1),... will be considered to be coefficients.
@@ -2272,7 +2218,7 @@ proc fixesDim(intmat B, list ABL, list TOR){
 ///////////////////////////////
 
 proc autKS(list #)
-"USAGE: autKS(TOR); TOR: optional list of elementary divisors in case of torsion.
+  "USAGE: autKS(TOR); TOR: optional list of elementary divisors in case of torsion.
 ASSUME: the basering is multigraded having used the command   setBaseMultigrading(Q) from 'multigrading.lib'.
 PURPOSE: Compute the subgroup Aut_K(S) of GL(n) of graded automorphisms of the polynomial ring S (the basering).
 RETURN: returns a ring S and exports an ideal ideal Iexported in the coordinate ring S = K[Y_ij] of GL(n) such that Aut_K(S) = V(I).
@@ -2818,7 +2764,7 @@ proc matrix2compper(intmat B, list BL, list MON, intmat Q, list TOR){
 ////////////////////////////////////////
 
 proc autXhat(ideal RL, intvec w, list #)
-"
+  "
 USAGE: autXhat(RL, w0, TOR): RL is an ideal, w an intvec, TOR a list of integers
 ASSUME: the basering is multigraded, the elements of TOR stand for the torsion rows of the matrix getVariableWeights(), w is an ample class or the free part of such a class.
 PURPOSE: compute an ideal J such that V(J) in some GL(n) is isomorphic to the H-equivariant automorphisms \widehat X --> \widehat X.
@@ -2988,7 +2934,7 @@ proc getCharacteristicGrading(list BL, list #){
   list TOR;
   if(size(#) > 0 and typeof(#) == "list" and typeof(#[1]) == "int"){
     TOR = #[1];
-   }
+  }
 
   intmat Q = getVariableWeights();
   intmat Qnew[nrows(Q)][size(BL)];
@@ -3005,6 +2951,8 @@ proc getCharacteristicGrading(list BL, list #){
 
 ///////////////////////////
 
+// helper
+// compute the linear hull over the columns of P.
 proc linearHull(intmat P){
   // the linear hull over the columns of P:
   // equivalent: cone(P, -P):
@@ -3022,6 +2970,7 @@ proc linearHull(intmat P){
 ////////////////////////////
 
 // helper
+// compute generators for the veronese subalgebra
 proc veron(intmat P){
   cone V = linearHull(P);//coneViaPoints(M);
   cone posorth = coneViaPoints(getIdMat(ambientDimension(V)));
@@ -3044,8 +2993,14 @@ example
 //////////////////////////
 
 proc autX(ideal RL, intvec w, list #)
-"
-ASSUME: graded freely
+  "
+  USAGE: autX(RL, w, TOR); RL: ideal, w: intvec, TOR: optional list of integers.
+  PURPOSE: compute generators for the hopf algebra O(Aut(X))
+  of the Mori dream space X given by Cox(X) := basering/RL and
+  the ample class w.
+  ASSUME: there is no torsion.
+  RETURN: a ring. Also exports an ideal Iexported.
+  EXAMPLE: example autX; shows an example
 "
 {
   list TOR;
@@ -3140,6 +3095,8 @@ example
 
 ////////////////////
 
+// helper
+// compute the hilbert basis of c.
 proc hilbertBas(cone c){
   intmat A = rays(c);
   intmat B = normaliz(A, 0);
@@ -3170,6 +3127,8 @@ example
 
 /////////////////////////
 
+// helper
+// compute the gale dual P of the degree matrix Q
 proc degMat2P(intmat Q, list TOR){
   int k = nrows(Q);
   int nfree = nrows(Q) - size(TOR);
@@ -3230,18 +3189,19 @@ proc compsAreTrivial(ideal RL, list TOR){
 ///////////////////////////
 
 proc autGradAlg(ideal I, list #)
-"
-USAGE: autGradAlg(I, TOR); I is an ideal, TOR is a list of integers representing the torsion part of the grading group.
+  "
+USAGE: autGradAlg(I, TOR); I is an ideal, TOR is an optional list of integers representing the torsion part of the grading group.
 ASSUME: minimally presented, degrees of the generators of I
 are the minimal degrees, basering multigraded pointedly, I_w = 0 
 for all w = deg(var(i))
+RETURN: a ring. Also exports an ideal Jexported and a list stabExported.
 EXAMPLE: example autGradAlg; shows an example
 "
 {
   list TOR;
   if(size(#) > 0 and typeof(#) == "list" and typeof(#[1]) == "int"){
     TOR = #[1];
-   }
+  }
 
   // for each col w of Q
   // we require I_w = 0:
@@ -3252,7 +3212,7 @@ EXAMPLE: example autGradAlg; shows an example
   def RR = stabilizer(I, TOR);
   setring RR;
 
-  // Jexported is already being exported
+  // Iexported is already being exported
   return(RR);
 }
 example
@@ -3268,19 +3228,28 @@ example
   ideal I = 0;//T(1)*T(2) + T(3)*T(4);
   def RR = autGradAlg(I);
   setring RR;
-  Iexported;
-  dim(std(Iexported));
+
+  "resulting ideal:"
+  Jexported;
+
+  "dimension:"
+  dim(std(Jexported));
+
+  "as a detailed list:"
+  stabExported;
 }
 
 //////////////////////////
 
 proc shrink(ideal I)
-"USAGE: shrink(I): I is an ideal
+"
+USAGE: shrink(I): I is an ideal
 ASSUME: There are variable generators in I and I does not contain 0-generators.
 PURPOSE: returns a new ring S obtained from the old one by removing all variables Y(i)
 such that some generator of I is Y(i). Exports the image of the given ideal in S.
 RETURN: a ring. Exports an ideal Ishrink.
-EXAMPLE:"
+EXAMPLE:
+"
 { 
   // create smaller ring:
   // we will map Y(i) --> 0 if i is in the list zeros:
