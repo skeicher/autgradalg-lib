@@ -2,7 +2,7 @@
 LIB "gfanlib.so";
 LIB "../../lib/autgradalg.lib";
 
-intmat Q[1][5] = 2,1,1,1,1;
+intmat Q[1][5] = 3,3,1,4,2;
 
 ring R = 0,T(1..5),dp;
 
@@ -10,6 +10,7 @@ ring R = 0,T(1..5),dp;
 setBaseMultigrading(Q); 
 
 ideal I = T(1)*T(2) + T(3)^2*T(4) + T(5)^3;
+
 
 list TOR;
 def S = autGradAlg(I, TOR);
@@ -34,46 +35,3 @@ setring U;
 absolute_primes; 
 
 quit;
-
-
-
-
-
-
-
-
-
-
-
-
-//def S = caut(I);
-def S = aut(I);
-setring S;
-
-
-ideal I2 = Jexported;
-I2;
-
-list L = Lexported;
-matrix A = L[1];
-string labels = L[2];
-
-// dim(std(I2));
-printAuts(A, labels, 5, I2);
-
-
-// for components:
-// create smaller ring:
-def Small = shrink(I2);
-setring Small;
-ideal I3 = Ishrink;
-I3;
-
- dim(std(I3));
-
-
-// takes still too long
-def U = absPrimdecGTZ(J);
-setring U;  absolute_primes; 
-
-

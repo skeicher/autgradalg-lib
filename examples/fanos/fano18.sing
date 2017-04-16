@@ -2,7 +2,7 @@
 LIB "gfanlib.so";
 LIB "../../lib/autgradalg.lib";
 
-intmat Q[1][5] = 1,3,1,1,2;
+intmat Q[1][5] = 2,4,1,3,3;
 
 ring R = 0,T(1..5),dp;
 
@@ -34,4 +34,3 @@ setring U;
 absolute_primes; 
 
 quit;
-

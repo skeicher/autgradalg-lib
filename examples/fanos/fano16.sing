@@ -2,20 +2,16 @@
 LIB "gfanlib.so";
 LIB "../../lib/autgradalg.lib";
 
-intmat Q[2][5] = 
-  1,3,1,1,2,
-  1,1,0,0,1;
-  
-
-list TOR = 2; // means CL(X) = ZZ + ZZ/TOR[1]*ZZ + ...
+intmat Q[1][5] = 3,3,2,1,2;
 
 ring R = 0,T(1..5),dp;
 
 // attach degree matrix Q to R:
 setBaseMultigrading(Q); 
 
-ideal I = T(1)*T(2) + T(3)^2*T(4)^2 + T(5)^2;
+ideal I = T(1)*T(2) + T(3)^2*T(4)^2 + T(5)^3;
 
+list TOR;
 def S = autGradAlg(I, TOR);
 setring S;
 

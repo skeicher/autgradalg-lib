@@ -2,7 +2,7 @@
 LIB "gfanlib.so";
 LIB "../../lib/autgradalg.lib";
 
-intmat Q[1][5] = 1,1,4,2,3;
+intmat Q[1][5] = 2,3,1,2,3;
 
 ring R = 0,T(1..5),dp;
 
@@ -10,6 +10,7 @@ ring R = 0,T(1..5),dp;
 setBaseMultigrading(Q); 
 
 ideal I = T(1)*T(2)*T(3) + T(4)^3 + T(5)^2;
+
 
 list TOR;
 def S = autGradAlg(I, TOR);

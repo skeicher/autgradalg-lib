@@ -2,7 +2,7 @@
 LIB "gfanlib.so";
 LIB "../../lib/autgradalg.lib";
 
-intmat Q[1][5] = 3,7,2,5,1;
+intmat Q[1][5] = 3,7,2,5,4;
 
 ring R = 0,T(1..5),dp;
 

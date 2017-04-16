@@ -9,7 +9,7 @@ ring R = 0,T(1..5),dp;
 // attach degree matrix Q to R:
 setBaseMultigrading(Q); 
 
-ideal I = T(1)*T(2) + T(3)^3*T(4)^3 + T(5)^2;
+ideal I = T(1)*T(2) + T(3)^5*T(4) + T(5)^2;
 
 list TOR;
 def S = autGradAlg(I, TOR);
