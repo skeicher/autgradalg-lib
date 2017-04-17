@@ -13,6 +13,7 @@
     * [Procedures](#procedures)
     * [Testing](#testing)
     * [Logging](#logging)
+    * [Note](#note)
 
 
 ## Introduction
@@ -95,4 +96,8 @@ You can increase the loglevel with
 ```C++
 printlevel = 2;
 ```
+
+### Note
+
+This library comes without any warranty whatsoever. Use it at your own risk.
 

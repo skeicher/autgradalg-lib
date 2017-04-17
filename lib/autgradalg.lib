@@ -27,6 +27,7 @@ PROCEDURES:
 * autX(I0, w, TOR): compute the automorphism group of X=X(R,w) as an algebraic subgroup V(I) of some GL(n).
 
 NOTE: the following functions were taken from 'quotsingcox.lib' by M.Donten-Bury and S.Keicher: 'hilbBas'.
+NOTE: This library comes without any warranty whatsoever. Use it at your own risk.
 
 KEYWORDS: automorphisms, graded algebra, Mori dream spaces, automorphism group, symmetries
 ";  
