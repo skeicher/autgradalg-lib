@@ -1,15 +1,15 @@
 # autgradalg.lib
 
-`autgradalg.lib` is a library for the free computer algebra system [Singular](#http://singular.uni-kl.de) to compute automorphism groups of pointedly graded algebras and of Mori dream spaces.
+`autgradalg.lib` is a library for the free computer algebra system [Singular](http://singular.uni-kl.de) to compute automorphism groups of pointedly graded algebras and of Mori dream spaces.
 
 
 ## Table of contents
 * [Introduction](#Introduction)
     * [Summary and references](#summary-and-references)
     * [Assumptions](#assumptions)
-* [How to use the library](#Installation-and-usage)
+* [How to use the library](#how-to-use-the-library)
     * [Installation](#installation)
-    * [Usage: Examples](#usage:-examples)
+    * [Usage: Examples](#usage-and-examples)
     * [Procedures](#procedures)
     * [Testing](#testing)
     * [Logging](#logging)
@@ -24,12 +24,12 @@
 
 The methods can be used to compute symmetries of homogeneous ideals.
 
- `autgradalg.lib` and the necessary background have been described [in this paper](#http://arxiv.org/abs/).
- It is an implementation of the algorithms developed in  [Computing automorphisms of Mori dream spaces](#http://arxiv.org/abs)
+ `autgradalg.lib` and the necessary background have been described [in this paper](https://arxiv.org/abs/1704.05078).
+ It is an implementation of the algorithms developed in  [Computing automorphisms of Mori dream spaces](https://arxiv.org/abs/1511.05059).
 
 
 ### Assumptions
-Please refer to [the detailed description](#http://arxiv.org/abs/) for the full list of assumptions. 
+Please refer to [the detailed description](https://arxiv.org/abs/1704.05078) for the full list of assumptions. 
 They include
 
 * `R` is given as factor algebra `S/I0` with a graded polynomial ring `S` over the rationals.
@@ -43,7 +43,7 @@ They include
 
 ### Installation
 
-* You need to have [Singular](#http://singular.uni-kl.de) installed. The library has been developed for version 4.0.2. We assume it has been installed it on a UNIX machine and is available from the command line.
+* You need to have [Singular](http://singular.uni-kl.de) installed. The library has been developed for version 4.0.2. We assume it has been installed it on a UNIX machine and is available from the command line.
 * Either
     * download the file `lib/autgradalg.lib` and `cd` to the folder containing it 
     * or clone this repository and `cd` to the `lib` folder.
@@ -53,7 +53,7 @@ They include
     LIB 'autgradalg.lib'
     ```
 
-### Usage: Examples
+### Usage and examples
 
 You can find examples in the folder `examples`.
 To run any file, say `FOO.sing`, `cd` to the corresponding directory, and run `Singular FOO.sing` on the command line.
@@ -61,11 +61,11 @@ To run any file, say `FOO.sing`, `cd` to the corresponding directory, and run `S
 * the folder `examples/fanos` lists the files to verify the results on Fano varieties listed in the Proposition in the [paper](#http://arxiv.org).
 
 
-### Documentation
+### Procedures
 
 The following functions are available from our library:
 type `help FUNCTIONNAME;` to see further information.
-Again, more information and examples can be found [here](#http://arxiv.org/abs/).
+Again, more information and examples can be found [here](https://arxiv.org/abs/1704.05078).
 
 
 * `autKS()`: compute the automorphism group of the basering (must be a polynomial ring) as an algebraic subgroup `V(I)` of some `GL(n)`.
