@@ -43,11 +43,11 @@ They include
 
 ### Installation
 
-* You need to have [Singular](http://singular.uni-kl.de) installed. The library has been developed for version 4.0.2. We assume it has been installed it on a UNIX machine and is available from the command line.
-* Either
+You need to have [Singular](http://singular.uni-kl.de) installed. The library has been developed for version 4.1.1. We assume it has been installed on a UNIX machine and is available from the command line.
+1. Either
     * download the file `lib/autgradalg.lib` and `cd` to the folder containing it 
     * or clone this repository and `cd` to the `lib` folder.
-* Try out the lib: Execute `Singular` and then load the library with the commands
+2. Execute `Singular` and then load the library with the commands
     ```C++
     LIB 'gfanlib.so'
     LIB 'autgradalg.lib'
@@ -73,7 +73,7 @@ Again, more information and examples can be found [here](https://arxiv.org/abs/1
 * `autGenWeights(TOR)`: compute the automorphisms of the grading group of the `basering` that fix the generator degrees.
 * `stabilizer(I0, TOR)`: compute the stabilizer of the given ideal `I0`.
 * `autXhat(I0, w, TOR)`: compute the automorphism group of `\widehat X` as an algebraic subgroup `V(I)` of some `GL(n)`.
-* `autX(I0, w, TOR)`: compute the automorphism group of `X=X(R,w)` as an algebraic subgroup `V(I)` of some `GL(n)`.
+* `autX(I0, w, TOR)`: compute the automorphism group of `X=X(R,w)` as an algebraic subgroup `V(I)` of some `GL(n)`. Note: usually very expensive.
 * `shrink(J)`: returns a new ring  obtained from the old one by removing variables  appearing as generators in `J`.
 
 
