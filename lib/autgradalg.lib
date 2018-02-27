@@ -301,7 +301,7 @@ static proc gradedCompIdealhelper(intvec w, intmat Q, ideal RL, list #){
       RLw[size(RLw)+1] = RL[i];
     } else {
       // if delta is not in cQ, then there is no monomial of this degree:
-      if(containsInSupportOld(cQ, delta)){
+      if(containsInSupport(cQ, delta)){
 	// calculate all monomials of degree delta
 	list deltaMON = wmonomials(delta, 0, TOR);
 
